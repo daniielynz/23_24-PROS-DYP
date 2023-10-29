@@ -1,15 +1,18 @@
 public class Actividad16 {
     public static void main(String[] args) {
         Contador cont = new Contador(100);
+        Contador cont2 = new Contador(400);
+        // creamos los hilos
         HiloA a = new HiloA("HiloA", cont);
-        HiloB b = new HiloB("HiloB", cont);
+        HiloB b = new HiloB("HiloB", cont2);
+        // los iniciamos
         a.start();
         b.start();
     }
 }
 
 class Contador {
-    private int c = 0;
+    private int c = 100;
 
     Contador(int c) {
         this.c = c;
@@ -37,6 +40,7 @@ class HiloA extends Thread {
     }
 
     public void run() {
+        // bucle de 300 repeticiones
         for (int j = 0; j < 300; j++) {
             contador.incrementa();
             try {
@@ -57,7 +61,9 @@ class HiloB extends Thread {
     }
 
     public void run() {
+        // bucle de 300 repeticiones
         for (int j = 0; j < 300; j++) {
+            // llamada al metodo de decrementar
             contador.decrementa();
             try {
                 Thread.sleep(100);
