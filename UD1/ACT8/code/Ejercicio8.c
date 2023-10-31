@@ -22,7 +22,7 @@ void main ()
 		printf ("\tEl Hijo recibe mensaje de abuelo: %s\n", buffer);
         // crear el mensaje para el nieto
         int fd2[2];
-        char saludoHijo[]="Saludo del hijo..";
+        char saludoHijo[]="Saludo del padre..";
         pipe(fd2); // Se crea el pipe o tubería
         pid = fork();
             switch (pid) {
