@@ -19,10 +19,10 @@ void main ()
     	case 0:   // Hijo recibe
 		close(fd1[1]); // Cierra el descriptor de escritura
 		read (fd1[0], buffer, sizeof(buffer)); // leo el pipe
-		printf ("\tEl Hijo lee el mensaje del abuelo: %s\n", buffer);
+		printf ("\tEl Hijo recibe mensaje de abuelo: %s\n", buffer);
         // crear el mensaje para el nieto
         int fd2[2];
-        char saludoHijo[]="Saludo del Hijo..";
+        char saludoHijo[]="Saludo del hijo..";
         pipe(fd2); // Se crea el pipe o tubería
         pid = fork();
             switch (pid) {
@@ -33,7 +33,7 @@ void main ()
                 case 0:   // Nieto recibe
                 close(fd2[1]); // Cierra el descriptor de escritura
                 read (fd2[0], buffer, sizeof(buffer)); // leo el pipe
-                printf ("\t\tEl Nieto recive mensaje del padre: %s\n", buffer);
+                printf ("\t\tEl Nieto recibe mensaje del padre: %s\n", buffer);
                 // crear el mensaje para el hijo
                 char saludoNieto[]="Saludo del nieto..";
                 pipe(fd1); // Se crea el pipe o tubería
@@ -58,7 +58,7 @@ void main ()
                                         case 0:   // Hijo recibe
                                         close(fd2[1]); // Cierra el descriptor de escritura
                                         read (fd2[0], buffer, sizeof(buffer)); // leo el pipe
-                                        printf ("El Abuelo recibe mensaje del Hijo: %s\n", buffer);
+                                        printf ("El Abuelo lee el mensaje del Hijo: %s\n", buffer);
                                     break;
                                     default: // Hijo envia a Abuelo
                                         close(fd2[0]); // Cierra el descriptor de lectura
