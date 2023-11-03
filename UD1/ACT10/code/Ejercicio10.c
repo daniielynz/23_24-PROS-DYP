@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 // Metodo que devuelve los mensajes que saldran por consola
 void signal_handler(int signo) {
