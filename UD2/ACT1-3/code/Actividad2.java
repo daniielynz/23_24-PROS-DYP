@@ -1,28 +1,36 @@
-package application;
-
 public class Actividad2 {
-	public static void main(int n) {
-		// Recibimos n como la cantidad de hilos que vamos a crear
-		for (int i = 1; i <= n; i++) {
-			Thread hilo = new HiloPersonalizado(i);
-			hilo.start();
-		}
-	
-		System.out.println("Final Programa");
-	}
+    public static void main(String[] args) {
+        // Verificar si se proporciona un argumento
+        if (args.length != 1) {
+            System.out.println("Dime un numero de Hilos");
+            return;
+        }
+        // Obtener el número de hilos a crear desde el argumento
+        int n = Integer.parseInt(args[0]);
+
+        // Crear y ejecutar la cantidad de hilos introducida
+        for (int i = 1; i <= n; i++) {
+            Thread hilo = new Hilo(i); 
+            // Iniciar el hilo
+            hilo.start();  
+        }
+		// Imprimir un mensaje al final del programa
+        System.out.println("Final Programa");  
+    }
 }
 
-class HiloPersonalizado extends Thread {
-	private final int numeroHilo;
+class Hilo extends Thread {
+	// Número de identificación del hilo
+    private int numeroHilo;  
 
-	public HiloPersonalizado(int numeroHilo) {
-		this.numeroHilo = numeroHilo;
-	}
+    public Hilo(int numeroHilo) {
+        this.numeroHilo = numeroHilo;
+    }
 
-	public void run() {
-		// Sacamos 20 veces por pantalla el mensaje por cada Hilo
-		for (int i = 1; i <= 20; i++) {
-		System.out.println("Hilo " + numeroHilo);
-		}
-	}
+    public void run() {
+        // Imprimir el número de hilo 20 veces
+        for (int i = 1; i <= 20; i++) {
+            System.out.println("Hilo " + numeroHilo);
+        }
+    }
 }
